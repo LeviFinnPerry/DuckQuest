@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Duck Quest Character Creator</title>
+</head>
+<body>
+    <div id="header">
+        <h1>Duck Quest Character Creator</h1>
+        <!-- <p>Create the character of your dreams, let the fates decide, or a little bit of both</p> -->
+    </div>
+    <div id="whole-page">
+        <div id="page">
+            <div id="background-img"></div>
+            <div class="char-section" id="char-options">
+                <h2 id="details-title">Duck Personality</h2>
+
+                <!-- Duck Personality: Name -->
+                <h4 id="name-lb">Name:</h4>
+                <input id="duck-name" title="duck-name">
+                <button class="random-name" id="rand-name">Randomize</button>
+
+                <!-- Duck Personality: Kudos -->
+                <h4 id="kudos-lb">Kudos:</h4>
+                <input type="number" class="duck-personality" id="kudos" min="1" max="5">
+                <button class="rand-op-btn" id="rand-kudos">Randomize</button>
+
+                <!-- Duck Personality: Heart -->
+                <h4 id="heart-lb">Heart:</h4>
+                <input type="number" class="duck-personality" id="heart" min="1" max="10">
+                <button class="rand-op-btn" id="rand-heart">Randomize</button>
+
+                <!-- Duck Personality: Psyche -->
+                <h4 id="psyche-lb">Psyche:</h4>
+                <input type="number" class="duck-personality" id="psyche" min="1" max="10">
+                <button class="rand-op-btn" id="rand-psyche">Randomize</button>
+
+                <!-- Duck Personality: Armour -->
+                <h4 id="armour-lb">Armour:</h4>
+                <input type="number" class="duck-personality" id="armour" min="1" max="10">
+                <button class="rand-op-btn" id="rand-armour">Randomize</button>
+            </div>
+
+            <!-- Character Stats Section -->
+            <div class="char-section" id="char-stats">
+                <h2 id="stats-title">Character Stats</h2>
+                <!-- Quacktribute: Quickness -->
+                <h4 id="quickness-lb">Quickness:</h4>
+                <input type="number" class="quack-attribute" id="quickness" min="1" max="5">
+
+                <!-- Quacktribute: Ugly -->
+                <h4 id="ugly-lb">Ugly:</h4>
+                <input type="number" class="quack-attribute" id="ugly" min="1" max="5">
+
+                <!-- Quacktribute: Arcana -->
+                <h4 id="arcana-lb">Arcana:</h4>
+                <input type="number" class="quack-attribute" id="arcana" min="1" max="5">
+
+                <!-- Quacktribute: Cool -->
+                <h4 id="cool-lb">Cool:</h4>
+                <input type="number" class="quack-attribute" id="cool" min="1" max="5">
+
+                <!-- Quacktribute: Kismet -->
+                <h4 id="kismet-lb">Kismet:</h4>
+                <input type="number" class="quack-attribute" id="kismet" min="1" max="5">
+
+                <div id="stats-btns-div">
+                    <button class="random-btn" id="rand-stats-btn">Randomize</button>
+                    <button class="stats-temp-btn" id="stats-temp-vals">Template Values</button>
+                </div>
+            </div>
+        </div>
+        <div id="main-btns">
+            <button class="random-btn" id="random-all">Randomize All Fields</button>
+            <button class="new-char-btn" id="createChar">Create Character</button>
+        </div>
+
+        <div class="char-popup" id="char-popup">
+            <!-- Duck Personality Attributes in Popup -->
+            <h2 class="popup-content" id="pu-name">Name: </h2>
+            <h4 class="popup-content" id="pu-kudos">Kudos: </h4>
+            <h4 class="popup-content" id="pu-heart">Heart: </h4>
+            <h4 class="popup-content" id="pu-psyche">Psyche: </h4>
+            <h4 class="popup-content" id="pu-armour">Armour: </h4>
+            <!-- Quacktributes -->
+            <h4 class="popup-content" id="pu-qui">Quickness: </h4>
+            <h4 class="popup-content" id="pu-ugl">Ugly: </h4>
+            <h4 class="popup-content" id="pu-arc">Arcana: </h4>
+            <h4 class="popup-content" id="pu-coo">Cool: </h4>
+            <h4 class="popup-content" id="pu-kis">Kismet: </h4>
+            
+
+
+
+            <button id="close-char-popup" onClick="closePopup()">close</button>
+        </div>
+    </div>
+
+    <script type="module" src="controller.js"></script>
+    <script type="module" src="model.js"></script>
+    <script type="module" src="view.js"></script>
+
+    <!-- Create character pop up -->
+    <script>
+        const createCharPopup = document.getElementById('char-popup')
+        function closePopup(){
+            createCharPopup.classList.remove("open-char-popup");
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>
