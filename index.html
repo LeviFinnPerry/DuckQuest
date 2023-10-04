@@ -25,23 +25,37 @@
 
                 <!-- Duck Personality: Kudos -->
                 <h4 id="kudos-lb">Kudos:</h4>
-                <input type="number" class="duck-personality" id="kudos" min="1" max="5">
-                <button class="rand-op-btn" id="rand-kudos">Randomize</button>
+                <h5 id="kudos-dc">Recognition and praise for heroic deeds accomplished.
+                    The higher your Kudos score, the greater your renown and prestige</h5>
+                <h4 class="duck-personality" id="kudos">1</h4>
 
-                <!-- Duck Personality: Heart -->
-                <h4 id="heart-lb">Heart:</h4>
-                <input type="number" class="duck-personality" id="heart" min="1" max="10">
-                <button class="rand-op-btn" id="rand-heart">Randomize</button>
+                <div class="duck-personality" id="personality-pp">
+                    <!-- Duck Personality: Heart -->
+                    <h3 id="personality-dc">You have 10 points to distribute between your heart and Psyche</h3>
+                    <h5 id="personality2-dc">Each must contain at least one point. Choose wisely, or don't!</h5>
 
-                <!-- Duck Personality: Psyche -->
-                <h4 id="psyche-lb">Psyche:</h4>
-                <input type="number" class="duck-personality" id="psyche" min="1" max="10">
-                <button class="rand-op-btn" id="rand-psyche">Randomize</button>
+                    <h4 id="heart-lb">Heart:</h4>
+                    <h5 id="heart-dc">
+                        Heart is a measure of an Adventurer's physical health and perseverance
+                        in the face of adversity. Or more simply, how many “hits to kill” your duck.
+                    </h5>
+                    <input type="number" class="duck-personality" id="heart" min="1" max="9">
 
+                    <!-- Duck Personality: Psyche -->
+                    <h4 id="psyche-lb">Psyche:</h4>
+                    <h5 id="psyche-dc">
+                        This is the mental vitality of your Adventurer.
+                        The duck brain can only suffer so much strain before quacking up.
+                    </h5>
+                    <input type="number" class="duck-personality" id="psyche" min="1" max="9">
+                </div>
                 <!-- Duck Personality: Armour -->
                 <h4 id="armour-lb">Armour:</h4>
-                <input type="number" class="duck-personality" id="armour" min="1" max="10">
-                <button class="rand-op-btn" id="rand-armour">Randomize</button>
+                <h5 id="armour-dc">
+                    Anything that makes your duck harder to hurt is represented by your Armour score.
+                    You also get a point of Armour for each level of Kudos your Adventurer has.
+                </h5>
+                <h4 class="duck-personality" id="armour">1</h4>
             </div>
 
             <!-- Character Stats Section -->
@@ -67,9 +81,8 @@
                 <h4 id="kismet-lb">Kismet:</h4>
                 <input type="number" class="quack-attribute" id="kismet" min="1" max="5">
 
-                <div id="stats-btns-div">
+                <div id="randbutton">
                     <button class="random-btn" id="rand-stats-btn">Randomize</button>
-                    <button class="stats-temp-btn" id="stats-temp-vals">Template Values</button>
                 </div>
             </div>
         </div>

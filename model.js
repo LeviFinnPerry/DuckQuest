@@ -1,8 +1,4 @@
-//Selectable values
-export const statOptions = {
-    stats: [15,14,13,12,10,8]
-};
-
+//Randomised Option Names
 export const randNameOptions = {
     firstName: [
         "Apple", "Drake", "Cherry", "Manu", "Rouen",
@@ -18,34 +14,37 @@ export const randNameOptions = {
     ]
 };
 
+//Personality names
+export const personalityOptions = {
+    personality: ["Kudos", "Heart", "Psyche", "Armour"]
+};
+
+//Template of all on Character Screen
 export class CharTemplate {
     constructor() {
         this.name = "";
-        this.kudos = ""; // Add the "Kudos" property
-        this.heart = ""; // Add the "Heart" property
-        this.psyche = ""; // Add the "Psyche" property
-        this.armour = ""; // Add the "Armour" property
-        this.quickness = ""; // Add the "Quickness" property
-        this.ugly = ""; // Add the "Ugly" property
-        this.arcana = ""; // Add the "Arcana" property
-        this.cool = ""; // Add the "Cool" property
-        this.kismet = ""; // Add the "Kismet" property
+        this.Kudos = "1"; 
+        this.Heart = ""; 
+        this.Psyche = ""; // Add the "Psyche" property
+        this.Armour = ""; // Add the "Armour" property
+        this.Quickness = ""; // Add the "Quickness" property
+        this.Ugly = ""; // Add the "Ugly" property
+        this.Arcana = ""; // Add the "Arcana" property
+        this.Cool = ""; // Add the "Cool" property
+        this.Kismet = ""; // Add the "Kismet" property
     }
 }
 
-
-//Creates new object, loops through setting the values with user entered values
+// Create new character object
 export function newCharObj(allChosenValues) {
-    let newChar = new CharTemplate;
-    var setValues = function(newChar){
-        let i = 0;
-        Object.keys(newChar).forEach(function(key) {
+    let newChar = new CharTemplate();
+    let i = 0;
+
+    Object.keys(newChar).forEach(function (key) {
         newChar[key] = allChosenValues[i];
         i++;
-        });
-    };
-    setValues(newChar);
+    });
+
     console.log(newChar);
-};
-
-
+    return newChar;
+}

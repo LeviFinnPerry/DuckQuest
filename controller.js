@@ -1,59 +1,114 @@
-import { newCharObj, charOptions, statOptions} from './model.js';
-import { fillOptionsDropDown, fillStatsDropDown, disableOp, statsDisabled} from './view.js';
-import { setRandOps, setRandName, setRandStats } from './randomize.js';
+import { newCharObj, charOptions} from './model.js';
+import { fillOptionsDropDown, fillStatsDropDown, statsDisabled } from './view.js';
+import { generateRandQuack, setRandName, setRandStats } from './randomize.js';
 
 fillOptionsDropDown(charOptions);
 fillStatsDropDown(statOptions);
+// Create an array to track selected Quacktributes and name
+const selectedQuacktributes = [];
+const selectedName;
 
-const charName = document.getElementById('name-input');
-const charOps = document.getElementsByClassName('option-dd');
-const statOps = document.getElementsByClassName('stat-dd');
-const createChar = document.getElementById('createChar');
-const randOpsBtns = document.getElementsByClassName('rand-op-btn');
-const randStatsBtn = document.getElementById('rand-stats-btn');
+// Get references to the input fields
+const quicknessInput = document.getElementById('quickness');
+const uglyInput = document.getElementById('ugly');
+const arcanaInput = document.getElementById('arcana');
+const coolInput = document.getElementById('cool');
+const kismetInput = document.getElementById('kismet');
+const heartInput = document.getElementById('heart');
+const psycheInput = document.getElementById('psyche');
+const nameInput = document.getElementById('duck-name');
+
+// Get references to input buttons
 const randNameButton = document.getElementById('rand-name');
-const randAllBtn = document.getElementById('random-all');
-const statsTemplateVals = document.getElementById('stats-temp-vals');
+const randKudosButton = docuument.getElementById('rand-kudos');
+
+
+
+// Add event listeners to the Button fields
+randNameButton.addEventListener('click', randomizeName);
+randKudosButton.addEventListener('click', generateRandQuack)
+
+// Add event listeners to the input fields
+nameInput.addEventListener('change', validatNameInput);
+quicknessInput.addEventListener('change', validateQuacktributeInput);
+uglyInput.addEventListener('change', validateQuacktributeInput);
+arcanaInput.addEventListener('change', validateQuacktributeInput);
+coolInput.addEventListener('change', validateQuacktributeInput);
+kismetInput.addEventListener('change', validateQuacktributeInput);
+heartInput.addEventListener('change', updatePsyche);
+psycheInput.addEventListener('change', updateHeart);
 
 //Pop up elements
 const createCharPopup = document.getElementById('char-popup')
 const popUpCharDetails = document.getElementsByClassName("popup-content");
-//
 console.log(popUpCharDetails);
 
-randAllBtn.addEventListener("click", function(){
+randAllBtn.addEventListener("click", function () {
     setRandName();
     setRandStats();
-    for(let i = 0; i < 4; i++) {
+    for (let i = 0; i < 4; i++) {
         randOpsBtns[i].click();
     }
     statsDisabled(true);
 });
 
-statsTemplateVals.addEventListener("click", function() {
-    fillStatsDropDown(statOptions);
-    statsDisabled(false);
-});
+//Function to validate Name input
+function validatNameInput(event) {
+    const inputField = event.target;
+    const nameValue = inputField.value;
+    if (nameValue == "") {
+        alert('Please enter a name')
+    }
+    else {
+        selectedName.push(nameValue);
+    }
+}
+// Function to validate Quacktribute input
+function validateQuacktributeInput(event) {
+  const inputField = event.target;
+  const quacktributeValue = parseInt(inputField.value);
 
-randNameButton.addEventListener("click", setRandName);
+  // Check if the value is between 1 and 5 and not a duplicate
+  if (quacktributeValue >= 1 && quacktributeValue <= 5 && !selectedQuacktributes.includes(quacktributeValue)) {
+    // Valid input
+    selectedQuacktributes.push(quacktributeValue);
+  } else {
+    // Invalid input, reset the input field
+    inputField.value = '';
+    alert('Please enter a unique number between 1 and 5.');
+  }
+}
 
-randStatsBtn.addEventListener("click", function(){
-    setRandStats();
-    statsDisabled(true);
-});
+// Function to update "Psyche" based on "Heart" input
+function updatePsyche() {
+  const heartValue = parseInt(heartInput.value);
 
-const randOps = document.querySelectorAll('.rand-op-btn');
-    randOps.forEach(randOps => {
-    randOps.addEventListener('click', function() {
-        setRandOps(this.id);
-    });
-});
+  // Ensure "Heart" is within the valid range
+  if (heartValue >= 1 && heartValue <= 10) {
+    // Update "Psyche" to equal 10 minus "Heart"
+    psycheInput.value = 10 - heartValue;
+  } else {
+    // If "Heart" is outside the valid range, reset both fields
+    heartInput.value = '';
+    psycheInput.value = '';
+    alert('Please enter a valid value for Heart (between 1 and 10).');
+  }
+}
 
-//Disable option
-for(let i = 0; i < statOps.length; i++) {
-    statOps[i].addEventListener("change", function() {
-        disableOp(statOps[i]);
-    })
+// Function to update "Heart" based on "Psyche" input
+function updateHeart() {
+  const psycheValue = parseInt(psycheInput.value);
+
+  // Ensure "Psyche" is within the valid range
+  if (psycheValue >= 1 && psycheValue <= 10) {
+    // Update "Heart" to equal 10 minus "Psyche"
+    heartInput.value = 10 - psycheValue;
+  } else {
+    // If "Psyche" is outside the valid range, reset both fields
+    psycheInput.value = '';
+    heartInput.value = '';
+    alert('Please enter a valid value for Psyche (between 1 and 10).');
+  }
 }
 
 //Creates array of current selected/entered values, this is passed to model
