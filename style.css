@@ -49,6 +49,13 @@ html, body {
     background-color: rgb(21, 20, 37);
 }
 
+#page input {
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    color: black;
+}
+
 #page h2 {
     font-size: 40px;
     margin-top: 20px;
@@ -61,18 +68,29 @@ html, body {
     margin-bottom: 3px;
 }
 
+#page h5 {
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    color: palegoldenrod;
+}
+
 #whole-page {
     height: 100%;
     color: white;
-    background: url("Images/dnd\ background\ edit2.png");
+    background: url("Images/Map.png");
     background-position-y: -50px;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
+
 #page {
     display: flex;
-    justify-content: center;
+    justify-content:center;
+    width: auto;
+    height: auto;
+
 }
 
 #whole-page button {
@@ -103,7 +121,7 @@ html, body {
 } */
 
 .char-section{
-    width: 400px;
+    width: 700px;
     margin: 20px;
     text-align: center;
     align-items: center;
