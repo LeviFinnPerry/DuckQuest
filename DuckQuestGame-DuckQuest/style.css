@@ -1,0 +1,147 @@
+*{
+    box-sizing: 0;
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Helvetica, sans-serif;
+}
+
+html, body {
+    margin:0;
+    height:100%;
+  }
+
+.char-popup {
+    padding-top: 50px;
+    width: 400px;
+    height: 620px;
+    background-color:  rgb(54, 52, 80);
+    background-image: url("./Images/man.png");
+    background-size: contain;
+    background-position-y: +220px;
+    background-repeat: no-repeat;
+    position: absolute;
+    text-align: center;
+    padding: 10;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.char-popup h2 {
+    padding-bottom: 20px;
+}
+
+.open-char-popup {
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#header {
+    font-size: 14px;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: rgb(21, 20, 37);
+}
+
+#page h2 {
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#page h4 {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 3px;
+}
+
+#whole-page {
+    height: 100%;
+    color: white;
+    background: url("Images/dnd\ background\ edit2.png");
+    background-position-y: -50px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#page {
+    display: flex;
+    justify-content: center;
+}
+
+#whole-page button {
+    color: white;
+    border-color: white;
+    background-color: transparent;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding: 7px;
+    max-width: 130px;
+    transition-duration: 0.4s;
+}
+
+#whole-page button:hover {
+    background-color: rgb(21, 20, 37);
+    color: white;
+    cursor: pointer;
+}
+
+#whole-page select:hover {
+    cursor: pointer;
+}
+
+/* #char-options {
+    display: grid;
+    align-content: space-between;
+    height: 80%;
+} */
+
+.char-section{
+    width: 400px;
+    margin: 20px;
+    text-align: center;
+    align-items: center;
+}
+
+#page select, #page input {
+    border-radius: 10px;
+    border-color: transparent;
+}
+
+#main-btns {
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#main-btns button {
+    margin: 10px;
+}
+
+#char-options select {
+    width: 180px;
+    height: 20px;
+    text-align: center;
+}
+
+#char-stats select {
+    width: 50px;
+    height: 30px;
+    text-align: center;
+}
+
+#char-options input {
+    text-align: center;
+    max-width: 180px;
+}
+
+/* #stats-dis-div select {
+    max-width: 40px;
+} */
+
