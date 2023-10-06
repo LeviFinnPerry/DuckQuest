@@ -8,10 +8,6 @@
     <title>Duck Quest Character Creator</title>
 </head>
 <body>
-    <div id="header">
-        <h1>Duck Quest Character Creator</h1>
-        <!-- <p>Create the character of your dreams, let the fates decide, or a little bit of both</p> -->
-    </div>
     <div id="whole-page">
         <div id="page">
             <div id="background-img"></div>
@@ -21,7 +17,7 @@
                 <!-- Duck Personality: Name -->
                 <h4 id="name-lb">Name:</h4>
                 <input id="duck-name" title="duck-name">
-                <button class="random-name" id="rand-name">Randomize</button>
+                <button class="random-name" id="rand-name">Randomise</button>
 
                 <!-- Duck Personality: Kudos -->
                 <h4 id="kudos-lb">Kudos:</h4>
@@ -60,29 +56,56 @@
 
             <!-- Character Stats Section -->
             <div class="char-section" id="char-stats">
-                <h2 id="stats-title">Character Stats</h2>
+                <h2 id="stats-title">QUACKtributes</h2>
+
+                <h3 id="stats-dc">
+                    Each Quacktribute needs a number 1-5 assigned to it, the trick?
+                    You can only use each number once!
+                </h3>
+                <h5 id="stats2-dc">Hint: 1 is your ducks weak point, 5 is your ducks greatest talent!</h5>
+
                 <!-- Quacktribute: Quickness -->
                 <h4 id="quickness-lb">Quickness:</h4>
+                <h5 id="quickness-dc">
+                    Refers to your speed and coordination. Are you keenly aware of your surroundings and
+                    fleet of foot or a clumsy klutz?
+                </h5>
                 <input type="number" class="quack-attribute" id="quickness" min="1" max="5">
 
                 <!-- Quacktribute: Ugly -->
                 <h4 id="ugly-lb">Ugly:</h4>
+                <h5 id="ugly-dc">
+                    Ugly helps you resist poison, harsh environmental conditions, and dangerous falls.
+                    It's also your ability to lift heavy things, bust open doors, crush and wreck stuff.
+                </h5>
                 <input type="number" class="quack-attribute" id="ugly" min="1" max="5">
 
                 <!-- Quacktribute: Arcana -->
                 <h4 id="arcana-lb">Arcana:</h4>
+                <h5 id="arcana-dc">
+                    This is the brainpower stat; your broad intellect, and aptitude for magick.
+                    Your mystic acumen and mental adroitness.
+                </h5>
                 <input type="number" class="quack-attribute" id="arcana" min="1" max="5">
 
                 <!-- Quacktribute: Cool -->
                 <h4 id="cool-lb">Cool:</h4>
+                <h5 id="cool-dc">
+                    A measure of your force of personality; your presence, hearing, and social influence.
+                    This may involve some notoriety and status but also includes your empathy, intuition and willpower.
+                </h5>
                 <input type="number" class="quack-attribute" id="cool" min="1" max="5">
 
                 <!-- Quacktribute: Kismet -->
                 <h4 id="kismet-lb">Kismet:</h4>
+                <h5 id="kismet-dc">
+                    Kismet works in mysterious ways. Some call it destiny, fate or blind luck. 
+                    Kismet can be used for affecting your Adventurer or their environment.
+                </h5>
                 <input type="number" class="quack-attribute" id="kismet" min="1" max="5">
 
                 <div id="randbutton">
-                    <button class="random-btn" id="rand-stats-btn">Randomize</button>
+                    <button class="random-btn" id="rand-quack">Randomise</button>
                 </div>
             </div>
         </div>
@@ -92,24 +115,22 @@
         </div>
 
         <div class="char-popup" id="char-popup">
-            <!-- Duck Personality Attributes in Popup -->
+            <!-- Duck Personality Attributes in Popup 
             <h2 class="popup-content" id="pu-name">Name: </h2>
             <h4 class="popup-content" id="pu-kudos">Kudos: </h4>
             <h4 class="popup-content" id="pu-heart">Heart: </h4>
             <h4 class="popup-content" id="pu-psyche">Psyche: </h4>
             <h4 class="popup-content" id="pu-armour">Armour: </h4>
-            <!-- Quacktributes -->
+            <!-- Quacktributes 
             <h4 class="popup-content" id="pu-qui">Quickness: </h4>
             <h4 class="popup-content" id="pu-ugl">Ugly: </h4>
             <h4 class="popup-content" id="pu-arc">Arcana: </h4>
             <h4 class="popup-content" id="pu-coo">Cool: </h4>
             <h4 class="popup-content" id="pu-kis">Kismet: </h4>
             
-
-
-
             <button id="close-char-popup" onClick="closePopup()">close</button>
-        </div>
+            -->
+         </div>
     </div>
 
     <script type="module" src="controller.js"></script>

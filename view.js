@@ -2,9 +2,7 @@ const optionDropDowns = document.getElementsByClassName('option-dd');
 const statDropDowns = document.getElementsByClassName('stat-dd');
 const nameField = document.getElementById('duck-name');
 
-export function updateRandName(name) {
-    nameField.value = name;
-}
+
 
 // Fills char option dropdown options
 export function fillOptionsDropDown(opObj) {
