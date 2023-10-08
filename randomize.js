@@ -1,33 +1,37 @@
-import { charOptions, personalityOptions, randNameOptions} from './model.js';
-import { fillStatsDropDown, updateRandName} from './view.js';
+import { randNameOptions, CharTemplate} from './model.js';
+import { updateQuacktribute, validateName,  } from './validation.js'
 
 const charOps = document.getElementsByClassName('option-dd');
+const charTemplate = CharTemplate;
 
 //For quacktribute randomisation
-function getRandQuack() {
-    let quacktributes = Object.values(statOptions);
-    let attributes = [];
-    for (let i = 0; i < quacktributes[0].length; i++) {
-        let randNumVal = Math.floor(Math.random() * quacktributes[0].length);
-        attributes[i] = randNumVal;
-    }
-    fillStatsDropDown(attributes);
-}
+export function getRandQuack() {
+    const num = [1, 2, 3, 4, 5];
+    // Shuffle the array to randomize the order
+    const shuffledNumbers = num.sort(() => Math.random() - 0.5);
+    const [q, u, a, c, k] = shuffledNumbers;  
+    updateQuacktribute();
+    
+};
 
-//Get Personality Values
-//Name
+//Get random name
 export function getRandName() {
     let vals = Object.values(randNameOptions);
     let randNumFn = Math.floor(Math.random() * vals[0].length);
     let randNumLn = Math.floor(Math.random() * vals[1].length);
     let randFullName = vals[0][randNumFn].concat(" ", vals[1][randNumLn]);
-    console.log(randFullName);
     updateRandName(randFullName);
+    charTemplate.name(randFullName);
 };
 
-//Kudos, Heart and Psyche Values
-export function getPersonality() {
-    let vals = Object.values(personalityOptions);
+//Gets random personality
+function getRandPersonality() {
 
+}
+
+export function getRandAll() {
+    getRandName();
+    getRandQuack();
+    getRandPersonality();
 }
 
