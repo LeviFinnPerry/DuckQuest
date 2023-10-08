@@ -46,13 +46,8 @@ export class CharTemplate {
         return this.Quacktributes;
     }
 
-    set quacktributes(q, u, a, c, k) {
-        this.Quacktributes = [q, u, a, c, k];
-        this.quickness(q);
-        this.ugly(u);
-        this.arcana(a);
-        this.cool(c);
-        this.kismet(k);
+    set quacktributes(quacktributes) {
+        this.Quacktributes = quacktributes;
     }
 
     // Getter and Setter for 'name'
