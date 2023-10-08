@@ -1,109 +1,131 @@
-import { CharTemplate } from './model.js'
+import { CharTemplate } from './model.js';
 
 const optionDropDowns = document.getElementsByClassName('option-dd');
 const statDropDowns = document.getElementsByClassName('stat-dd');
 const nameField = document.getElementById('duck-name');
-const charTemplate = new CharTemplate;
+const charTemplate = new CharTemplate();
 
+const quacktributeMap = {
+    "q": "quickness",
+    "u": "ugly",
+    "a": "arcana",
+    "c": "cool",
+    "k": "kismet"
+};
 
-//Function to validate Name input
-export function validateName(event) {
-    const inputField = event.target;
-    const nameValue = inputField.value;
-    if (nameValue == "") {
-        alert('Please enter a name')
+// Function to validate Name input
+export function validateName(input, name) {
+    if (name === "") {
+        alert('Please enter a name');
+    } else {
+        updateName(input, name);
+    }
+}
+
+// Function to validate All Quacktributes
+export function validateAllQuacktributes(inputs, values) {
+    // Extract the values from the input elements
+    const quacktributes = inputs.map(values);
+
+    // Check if there are exactly 5 unique values
+    const uniqueValues = new Set(quacktributes);
+    if (uniqueValues.size !== 5) {
+        alert('There should be 5 unique quacktributes');
+        return; // Exit the function if not exactly 5 unique values
+    }
+
+    // Check if all values are between 1 and 5
+    const validValues = quacktributes.every(value => value >= 1 && value <= 5);
+
+    if (!validValues) {
+        alert('Each quacktribute must have values between 1 and 5');
     }
     else {
-        selectedName.push(nameValue);
+        updateQuacktributes(inputs, values);
     }
 }
+
 // Function to validate Quacktribute input
-export function validateQuacktribute() {
+export function validateQuacktribute(input, key) {
     const quacktributes = charTemplate.quacktributes();
-    if (!quacktributes.includes(-1)) {
-        alert('Please assign unique values for each attribute');
+
+    if (!quacktributeMap[key] || quacktributes[quacktributeMap[key]] < 1 || quacktributes[quacktributeMap[key]] > 5) {
+        alert('Invalid key or value');
+        input.value = "";
     } else {
-        const uniqueValues = new Set(quacktributes);
-        const isValid = quacktributes.every(value => value >= 1 && value <= 5) && uniqueValues.size === quacktributes.length;
+        updateQuacktribute(key, input.value);
+    }
+}
 
-        if (!isValid) {
-            alert('Please assign unique values between 1 and 5 for each attribute');
-        } else {
-            //Is Valid to Continue
+// Function to validate Personality input
+export function validatePersonality(heartInput, psycheInput, key) {
+    if (key === "h") {
+        updatePsyche(heartInput, psycheInput);
+    } else if (key === "p") {
+        updateHeart(psycheInput, heartInput);
+    }
+}
+
+// Function to update the quacktribute value based on the key
+function updateQuacktribute(key, value) {
+    if (quacktributeMap.hasOwnProperty(key)) {
+        charTemplate[quacktributeMap[key]] = value;
+    } else {
+        alert('Invalid quacktribute key');
+    }
+}
+
+export function updateQuacktributes(inputs, values) {
+    // Create an array to store the updated quacktribute values
+    const updatedQuacktributes = values; // Make a copy of the original values
+
+    // Loop through the inputs and update the corresponding quacktribute values
+    inputs.forEach(input => {
+        const key = input.getAttribute("data-key"); // Get the data-key attribute to identify the quacktribute
+        const value = parseInt(input.value);
+
+        if (quacktributeMap[key] !== undefined && !isNaN(value)) {
+            updatedQuacktributes[quacktributeMap[key]] = value;
         }
-    }
+    });
+
+    // Update the quacktribute values in the charTemplate instance
+    charTemplate.quacktributes(updatedQuacktributes);
 }
 
-//Function to valuduate 
-export function validatePersonality(event, key) {
-    const inputField = event.target;
-    const personalityValue = parse.int(inputField.value);
-}
-
-export function updateQuacktribute(event, key) {
-    const inputField = event.target;
-    const quacktributeValue = parseInt(inputField.value);
-    if (quacktributeValue > 0 && quacktributeValue <= 5) {
-        
-        validateQuacktribute();
-    }
-}
-
-//Updates the name for user
-function updateRandName(name) {
-    nameField.value = name;
+// Updates the name for the user
+function updateName(inputField, name) {
+    charTemplate.name(name);
+    inputField.value = name;
 }
 
 // Function to update "Psyche" based on "Heart" input
-function updatePsyche() {
+function updatePsyche(heartInput, psycheInput) {
     const heartValue = parseInt(heartInput.value);
 
-    // Ensure "Heart" is within the valid range
     if (heartValue >= 1 && heartValue <= 10) {
-        // Update "Psyche" to equal 10 minus "Heart"
         psycheInput.value = 10 - heartValue;
     } else {
-        // If "Heart" is outside the valid range, reset both fields
         heartInput.value = '';
         psycheInput.value = '';
         alert('Please enter a valid value for Heart (between 1 and 10).');
     }
+    charTemplate.psyche(psycheInput.value);
+    charTemplate.heart(heartInput.value);
 }
 
 // Function to update "Heart" based on "Psyche" input
-function updateHeart() {
+function updateHeart(psycheInput, heartInput) {
     const psycheValue = parseInt(psycheInput.value);
 
-    // Ensure "Psyche" is within the valid range
     if (psycheValue >= 1 && psycheValue <= 10) {
-        // Update "Heart" to equal 10 minus "Psyche"
         heartInput.value = 10 - psycheValue;
+        charTemplate.heart = heartInput.value;
     } else {
-        // If "Psyche" is outside the valid range, reset both fields
         psycheInput.value = '';
         heartInput.value = '';
         alert('Please enter a valid value for Psyche (between 1 and 10).');
     }
+    charTemplate.psyche(psycheInput.value);
+    charTemplate.heart(heartInput.value);
 }
-
-//Creates array of current selected/entered values, this is passed to model
-createChar.addEventListener("click", function () {
-    const allChosenValues = [charName.value];
-    if (charName.value === "") {
-        alert('Please enter a name');
-    } else {
-        createCharPopup.classList.add("open-char-popup");
-        for (let i = 0; i < charOps.length; i++) {
-            allChosenValues.push(charOps[i].value);
-        }
-        for (let i = 0; i < statOps.length; i++) {
-            allChosenValues.push(statOps[i].value);
-        }
-        newCharObj(allChosenValues);
-        console.log(allChosenValues);
-
-        for (let i = 0; i < (popUpCharDetails.length + 1); i++) {
-            popUpCharDetails[i].innerHTML = (popUpCharDetails[i].innerHTML + "   " + allChosenValues[i])
-        }
-    }
-});
