@@ -6,11 +6,16 @@ const charOps = document.getElementsByClassName('option-dd');
 //For quacktribute randomisation
 export function getRandQuack(inputs) {
     const num = [1, 2, 3, 4, 5];
-    // Shuffle the array to randomize the order
-    const shuffledNumbers = num.sort(() => Math.random() - 0.5);
-    validateAllQuacktributes(inputs, shuffledNumbers);
-    
-};
+
+    // Fisher-Yates shuffle algorithm
+    for (let i = num.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [num[i], num[j]] = [num[j], num[i]]; // Swap elements at i and j
+    }
+
+    validateAllQuacktributes(num);
+}
+
 
 //Get random name
 export function getRandName(input) {
