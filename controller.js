@@ -24,22 +24,23 @@ const createCharButton = document.getElementById('createChar')
 
 
 // Add event listeners to the Button fields
-randNameButton.addEventListener('click', getRandName);
-randQuackButton.addEventListener('click', getRandQuack);
-randAllButton.addEventListener('click', getRandAll);
-createCharButton.addEventListener('click', newCharacter);
+randNameButton.addEventListener('click', () => getRandName(nameInput));
+randQuackButton.addEventListener('click', () => getRandQuack(quicknessInput, uglyInput, arcanaInput, coolInput, kismetInput));
+randAllButton.addEventListener('click', () => getRandAll(nameInput, quicknessInput, uglyInput, arcanaInput, coolInput, kismetInput, heartInput, psycheInput));
+createCharButton.addEventListener('click', () => newCharacter());
 
 
 // Add event listeners to the input fields
-nameInput.addEventListener('change', validateName);
-heartInput.addEventListener('change', validatePersonality(this, "h"));
-psycheInput.addEventListener('change', validatePersonality(this, "p"));
+nameInput.addEventListener('change', () => validateName(nameInput, nameInput.value));
+heartInput.addEventListener('change', () => validatePersonality(heartInput, psycheInput, "h"));
+psycheInput.addEventListener('change', () => validatePersonality(psycheInput, heartInput, "p"));
 
-quicknessInput.addEventListener('change', validateQuacktribute(this, "q"));
-uglyInput.addEventListener('change', validateQuacktribute(this, "u"));
-arcanaInput.addEventListener('change', validateQuacktribute(this, "a"));
-coolInput.addEventListener('change', validateQuacktribute(this, "c"));
-kismetInput.addEventListener('change', validateQuacktribute(this, "k"));
+quicknessInput.addEventListener('change', () => validateQuacktribute(quicknessInput, "q"));
+uglyInput.addEventListener('change', () => validateQuacktribute(uglyInput, "u"));
+arcanaInput.addEventListener('change', () => validateQuacktribute(arcanaInput, "a"));
+coolInput.addEventListener('change', () => validateQuacktribute(coolInput, "c"));
+kismetInput.addEventListener('change', () => validateQuacktribute(kismetInput, "k"));
+
 
 //Pop up elements
 //const createCharPopup = document.getElementById('char-popup')
