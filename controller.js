@@ -1,80 +1,48 @@
-import { newCharObj, charOptions, statOptions} from './model.js';
-import { fillOptionsDropDown, fillStatsDropDown, disableOp, statsDisabled} from './view.js';
-import { setRandOps, setRandName, setRandStats } from './randomize.js';
+import { getRandAll, getRandName, getRandQuack } from './randomize.js';
+import { validateName, validateQuacktribute, validatePersonality } from './validation.js';
 
 fillOptionsDropDown(charOptions);
 fillStatsDropDown(statOptions);
 
-const charName = document.getElementById('name-input');
-const charOps = document.getElementsByClassName('option-dd');
-const statOps = document.getElementsByClassName('stat-dd');
-const createChar = document.getElementById('createChar');
-const randOpsBtns = document.getElementsByClassName('rand-op-btn');
-const randStatsBtn = document.getElementById('rand-stats-btn');
+//Personality input fields
+const nameInput = document.getElementById("duck-name");
+const heartInput = document.getElementById('heart');
+const psycheInput = document.getElementById('psyche');
+
+// Quacktribute input fields
+const quicknessInput = document.getElementById('quickness');
+const uglyInput = document.getElementById('ugly');
+const arcanaInput = document.getElementById('arcana');
+const coolInput = document.getElementById('cool');
+const kismetInput = document.getElementById('kismet');
+
+// Get references to buttons
 const randNameButton = document.getElementById('rand-name');
-const randAllBtn = document.getElementById('random-all');
-const statsTemplateVals = document.getElementById('stats-temp-vals');
+const randQuackButton = document.getElementById('rand-quack')
+const randAllButton = document.getElementById('random-all')
+const createCharButton = document.getElementById('createChar')
+
+
+// Add event listeners to the Button fields
+randNameButton.addEventListener('click', getRandName);
+randQuackButton.addEventListener('click', getRandQuack);
+randAllButton.addEventListener('click', getRandAll);
+createCharButton.addEventListener('click', newCharacter);
+
+
+// Add event listeners to the input fields
+nameInput.addEventListener('change', validateName);
+heartInput.addEventListener('change', validatePersonality(this, "h"));
+psycheInput.addEventListener('change', validatePersonality(this, "p"));
+
+quicknessInput.addEventListener('change', validateQuacktribute(this, "q"));
+uglyInput.addEventListener('change', validateQuacktribute(this, "u"));
+arcanaInput.addEventListener('change', validateQuacktribute(this, "a"));
+coolInput.addEventListener('change', validateQuacktribute(this, "c"));
+kismetInput.addEventListener('change', validateQuacktribute(this, "k"));
 
 //Pop up elements
-const createCharPopup = document.getElementById('char-popup')
-const popUpCharDetails = document.getElementsByClassName("popup-content");
-//
-console.log(popUpCharDetails);
-
-randAllBtn.addEventListener("click", function(){
-    setRandName();
-    setRandStats();
-    for(let i = 0; i < 4; i++) {
-        randOpsBtns[i].click();
-    }
-    statsDisabled(true);
-});
-
-statsTemplateVals.addEventListener("click", function() {
-    fillStatsDropDown(statOptions);
-    statsDisabled(false);
-});
-
-randNameButton.addEventListener("click", setRandName);
-
-randStatsBtn.addEventListener("click", function(){
-    setRandStats();
-    statsDisabled(true);
-});
-
-const randOps = document.querySelectorAll('.rand-op-btn');
-    randOps.forEach(randOps => {
-    randOps.addEventListener('click', function() {
-        setRandOps(this.id);
-    });
-});
-
-//Disable option
-for(let i = 0; i < statOps.length; i++) {
-    statOps[i].addEventListener("change", function() {
-        disableOp(statOps[i]);
-    })
-}
-
-//Creates array of current selected/entered values, this is passed to model
-createChar.addEventListener("click", function() {
-    const allChosenValues = [charName.value];
-    if(charName.value ===""){
-        alert('Please enter a name');
-    } else {
-        createCharPopup.classList.add("open-char-popup");
-        for (let i =0; i < charOps.length; i++) {
-            allChosenValues.push(charOps[i].value);
-        }
-        for (let i =0; i < statOps.length; i++) {
-            allChosenValues.push(statOps[i].value);
-        }
-        newCharObj(allChosenValues);
-        console.log(allChosenValues);
-
-        for (let i = 0; i < (popUpCharDetails.length+1); i++) {
-        popUpCharDetails[i].innerHTML = (popUpCharDetails[i].innerHTML + "   " + allChosenValues[i])
-        }
-    }
-});
+//const createCharPopup = document.getElementById('char-popup')
+//const popUpCharDetails = document.getElementsByClassName("popup-content");
+//console.log(popUpCharDetails);
 
