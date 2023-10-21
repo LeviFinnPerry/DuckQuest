@@ -8,16 +8,15 @@
 
     if (selectedCharacter) {
         document.getElementById('char-name').textContent = selectedCharacter[0];
-        document.getElementById('char-kudos').textContent = selectedCharacter[1]; 
-        document.getElementById('char-heart').textContent = selectedCharacter[2]; 
-        document.getElementById('char-psyche').textContent = selectedCharacter[3];
-        document.getElementById('char-armour').textContent = selectedCharacter[4];
-        document.getElementById('char-quickness').textContent = selectedCharacter[5];
-        document.getElementById('char-ugly').textContent = selectedCharacter[6]; 
-        document.getElementById('char-arcana').textContent = selectedCharacter[7];
-        document.getElementById('char-cool').textContent = selectedCharacter[8]; 
-        document.getElementById('char-kismet').textContent = selectedCharacter[9];
-        ;
+        document.getElementById('char-kudos').textContent = selectedCharacter[1][0];
+        document.getElementById('char-heart').textContent = selectedCharacter[1][1];
+        document.getElementById('char-psyche').textContent = selectedCharacter[1][2];
+        document.getElementById('char-armour').textContent = selectedCharacter[1][3];
+        document.getElementById('char-quickness').textContent = selectedCharacter[2][0];
+        document.getElementById('char-ugly').textContent = selectedCharacter[2][1];
+        document.getElementById('char-arcana').textContent = selectedCharacter[2][2];
+        document.getElementById('char-cool').textContent = selectedCharacter[2][3];
+        document.getElementById('char-kismet').textContent = selectedCharacter[2][4];
     } else {
         // Provide an option for a blank character
         selectedCharacterElement.innerHTML = '<p>No character selected.</p>';
@@ -287,26 +286,29 @@
         }
     ];
 
-    // Helper function to create a character card
-    function createCharacterCard(character) {
+    // Display QuackStories
+    var characterImagesContainer = document.getElementById('character-images');
+
+    Quackstories.forEach(function (character) {
+        // Create a QuackStory card
         var card = document.createElement('div');
-        card.className = 'character-card';
+        card.className = 'quackstory-card';
 
         var image = document.createElement('img');
-        image.src = character.image;
+        image.src = 'Images/' + character.image;
         image.alt = character.name;
 
         var details = document.createElement('div');
-        details.className = 'character-details';
+        details.className = 'quackstory-details';
 
-        var name = document.createElement('h2');
+        var name = document.createElement('h3');
         name.textContent = character.name;
 
         var description = document.createElement('p');
         description.textContent = character.description;
 
         var stats = document.createElement('div');
-        stats.className = 'character-stats';
+        stats.className = 'quackstory-stats';
 
         var heartStat = document.createElement('div');
         heartStat.textContent = 'Heart: ' + character.heart;
@@ -336,16 +338,88 @@
         card.appendChild(image);
         card.appendChild(details);
 
-        return card;
-    }
+        // Apply a black border to each card
+        card.style.border = '1px solid black';
 
-    // Display all characters
-    var characterContainer = document.getElementById('character-container');
-    characters.forEach(function (character) {
-        var card = createCharacterCard(character);
-        characterContainer.appendChild(card);
+        characterImagesContainer.appendChild(card);
     });
 });
 
+// Select elements
+var characterDropdown = document.getElementById('character-dropdown');
+var submitButton = document.getElementById('submit-character');
 
+// Function to update the selected character's stats
+function updateSelectedCharacterStats(character) {
+    document.getElementById('char-name').textContent = character.name;
+    document.getElementById('char-kudos').textContent = character.kudos;
+    document.getElementById('char-heart').textContent = character.heart;
+    document.getElementById('char-psyche').textContent = character.psyche;
+    document.getElementById('char-armour').textContent = character.armour;
+    document.getElementById('char-quickness').textContent = character.quickness;
+    document.getElementById('char-ugly').textContent = character.ugly;
+    document.getElementById('char-arcana').textContent = character.arcana;
+    document.getElementById('char-cool').textContent = character.cool;
+    document.getElementById('char-kismet').textContent = character.kismet;
+}
 
+// Function to handle character selection
+function handleCharacterSelection() {
+    var selectedCharacterName = characterDropdown.value;
+
+    // Find the selected character in your characters array
+    var selectedCharacter = characters.find(function (character) {
+        return character.name === selectedCharacterName;
+    });
+
+    if (selectedCharacter) {
+        // Update the selected character's stats
+        updateSelectedCharacterStats(selectedCharacter);
+    }
+}
+
+// Add an event listener to the submit button
+submitButton.addEventListener('click', handleCharacterSelection);
+
+Quackstories.forEach(function (character) {
+    var option = document.createElement('option');
+    option.value = character.name;
+    option.textContent = character.name;
+    characterDropdown.appendChild(option);
+});
+
+// JavaScript code to populate the dropdown and display selected character details
+document.addEventListener('DOMContentLoaded', function () {
+    // Populate the dropdown with character names
+    var characterDropdown = document.getElementById('character-dropdown');
+
+    Quackstories.forEach(function (character) {
+        var option = document.createElement('option');
+        option.value = character.name;
+        option.textContent = character.name;
+        characterDropdown.appendChild(option);
+    });
+
+    // Add an event listener for the "Update Character" button
+    var updateCharacterButton = document.getElementById('update-character-button');
+    updateCharacterButton.addEventListener('click', function () {
+        var selectedCharacterName = characterDropdown.value;
+
+        // Look up the selected character by name in Quackstories
+        var selectedCharacter = Quackstories.find(function (character) {
+            return character.name === selectedCharacterName;
+        });
+
+        // Display the selected character's details in the "current character" section
+        document.getElementById('current-char-name').textContent = selectedCharacter.name;
+        document.getElementById('current-char-kudos').textContent = selectedCharacter.kudos;
+        document.getElementById('current-char-heart').textContent = selectedCharacter.heart;
+        document.getElementById('current-char-psyche').textContent = selectedCharacter.psyche;
+        document.getElementById('current-char-armour').textContent = selectedCharacter.armour;
+        document.getElementById('current-char-quickness').textContent = selectedCharacter.quickness;
+        document.getElementById('current-char-ugly').textContent = selectedCharacter.ugly;
+        document.getElementById('current-char-arcana').textContent = selectedCharacter.arcana;
+        document.getElementById('current-char-cool').textContent = selectedCharacter.cool;
+        document.getElementById('current-char-kismet').textContent = selectedCharacter.kismet;
+    });
+});
