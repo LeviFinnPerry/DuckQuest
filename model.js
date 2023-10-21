@@ -24,15 +24,12 @@ export const statOptions = {
 export class CharTemplate {
     constructor() {
         this.Name = "";
-        this.Kudos = -1; 
-        this.Heart = -1; 
-        this.Psyche = -1; 
-        this.Armour = -1; 
-        this.Quickness = -1; 
-        this.Ugly = -1; 
-        this.Arcana = -1; 
-        this.Cool = -1;
-        this.Kismet = -1; 
+        this.Personality = [
+            this.Kudos,
+            this.Heart,
+            this.Psyche,
+            this.Armour,
+        ];
         this.Quacktributes = [
             this.Quickness,
             this.Ugly,
@@ -141,8 +138,3 @@ export class CharTemplate {
     }
 };
 
-
-// Create new character object
-export function newCharacter() {
-
-};

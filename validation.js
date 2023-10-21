@@ -1,5 +1,5 @@
+import { quackInputs } from './controller.js';
 import { CharTemplate } from './model.js';
-import { quackInputs } from './controller.js'
 const charTemplate = new CharTemplate();
 
 const quacktributeMap = {
@@ -154,4 +154,15 @@ function updateHeart(psycheInput, heartInput) {
     }
     charTemplate.psyche = psycheInput.value;
     charTemplate.heart = heartInput.value;
+    charTemplate.Personality = [1, heartInput.value, psycheInput.value, 1];
+}
+
+export function createChar() {
+    var newCharacter = [];
+    newCharacter.push(charTemplate.name);
+    newCharacter.push(charTemplate.Personality);
+    newCharacter.push(charTemplate.Quacktributes);
+
+    localStorage.setItem('newCharacter', JSON.stringify(newCharacter));
+    window.location.href = 'index2.html';
 }

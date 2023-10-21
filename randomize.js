@@ -1,19 +1,16 @@
 import { randNameOptions} from './model.js';
-import { validateAllQuacktributes, validateName,  } from './validation.js'
+import { validateAllQuacktributes, validateName, validatePersonality,  } from './validation.js'
 
 const charOps = document.getElementsByClassName('option-dd');
-
+var inputs = [1, 2, 3, 4, 5];
 //For quacktribute randomisation
-export function getRandQuack(inputs) {
-    const num = [1, 2, 3, 4, 5];
-
+export function getRandQuack() {
     // Fisher-Yates shuffle algorithm
-    for (let i = num.length - 1; i > 0; i--) {
+    for (let i = inputs.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [num[i], num[j]] = [num[j], num[i]]; // Swap elements at i and j
+        [inputs[i], inputs[j]] = [inputs[j], inputs[i]]; // Swap elements at i and j
     }
-
-    validateAllQuacktributes(num);
+    validateAllQuacktributes(inputs);
 }
 
 
@@ -36,12 +33,13 @@ function getRandPersonality(heartInput, psycheInput) {
     // Update the input values
     heartInput.value = randomHeart;
     psycheInput.value = randomPsyche;
+
+    validatePersonality(heartInput, psycheInput, "p");
 }
 
-export function getRandAll(nameInput, q, u, a, c, k, heartInput, psycheInput) {
-    inputs = [q, u, a, c, k];
+export function getRandAll(nameInput, heartInput, psycheInput) {
     getRandName(nameInput);
-    getRandQuack(inputs);
+    getRandQuack();
     getRandPersonality(heartInput, psycheInput);
 }
 
