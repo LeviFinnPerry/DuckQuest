@@ -161,7 +161,24 @@ html, body {
     max-width: 180px;
 }
 
-/* #stats-dis-div select {
-    max-width: 40px;
-} */
+/* CSS to style the container */
+.container {
+    display: flex;
+}
 
+
+
+/* Apply this style to the container of QuackStory cards */
+#character-images {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px;
+}
+
+/* Style for each individual QuackStory card */
+.quackstory-card {
+    width: calc(33.33% - 20px);
+    margin: 5px;
+    border: 1px solid black;
+    box-sizing: border-box;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE, edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Selection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="page">
+        <div class="right-panel">
+            <h1>QuackStories</h1>
+            <div id="character-images">
+                <!-- QuackStory cards will be populated via JavaScript -->
+            </div>
+            <!-- Character Dropdown -->
+            <select id="character-dropdown">
+                <!-- Options will be populated via JavaScript -->
+            </select>
+            <!-- Update Character Button -->
+            <button id="update-character-button">Update Character</button>
+        </div>
+        <div class="left-panel">
+            <h4>Current Character</h4>
+            <div id="selected-character">
+                <p>Name: <span id="current-char-name"></span></p>
+                <p>Kudos: <span id="current-char-kudos"></span></p>
+                <p>Heart: <span id="current-char-heart"></span></p>
+                <p>Psyche: <span id="current-char-psyche"></span></p>
+                <p>Armour: <span id="current-char-armour"></span></p>
+                <p>Quickness: <span id="current-char-quickness"></span></p>
+                <p>Ugly: <span id="current-char-ugly"></span></p>
+                <p>Arcana: <span id="current-char-arcana"></span></p>
+                <p>Cool: <span id="current-char-cool"></span></p>
+                <p>Kismet: <span id="current-char-kismet"></span></p>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="controller2.js"></script>
+</body>
+</html>

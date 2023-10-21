@@ -1,5 +1,5 @@
 import { getRandAll, getRandName, getRandQuack } from './randomize.js';
-import { validateName, validateQuacktribute, validatePersonality } from './validation.js';
+import { validateName, validateQuacktribute, validatePersonality, createChar } from './validation.js';
 
 export const quackInputs = new Array;
 //Personality input fields
@@ -28,15 +28,15 @@ const createCharButton = document.getElementById('createChar')
 document.addEventListener('DOMContentLoaded', function () {
     // Add event listeners to the Button fields
     randNameButton.addEventListener('click', () => getRandName(nameInput));
-    randQuackButton.addEventListener('click', () => getRandQuack(quackInputs));
-    randAllButton.addEventListener('click', () => getRandAll(nameInput, quicknessInput, uglyInput, arcanaInput, coolInput, kismetInput, heartInput, psycheInput));
-    createCharButton.addEventListener('click', () => newCharacter());
+    randQuackButton.addEventListener('click', () => getRandQuack());
+    randAllButton.addEventListener('click', () => getRandAll(nameInput, heartInput, psycheInput));
+    createCharButton.addEventListener('click', () => createChar());
 
 
     // Add event listeners to the input fields
     nameInput.addEventListener('change', () => validateName(nameInput, nameInput.value));
     heartInput.addEventListener('change', () => validatePersonality(heartInput, psycheInput, "h"));
-    psycheInput.addEventListener('change', () => validatePersonality(psycheInput, heartInput, "p"));
+    psycheInput.addEventListener('change', () => validatePersonality(heartInput, psycheInput, "p"));
 
     quicknessInput.addEventListener('change', () => validateQuacktribute(quicknessInput, "q"));
     uglyInput.addEventListener('change', () => validateQuacktribute(uglyInput, "u"));
@@ -45,8 +45,5 @@ document.addEventListener('DOMContentLoaded', function () {
     kismetInput.addEventListener('change', () => validateQuacktribute(kismetInput, "k"));
 });
 
-//Pop up elements
-//const createCharPopup = document.getElementById('char-popup')
-//const popUpCharDetails = document.getElementsByClassName("popup-content");
-//console.log(popUpCharDetails);
+
 
